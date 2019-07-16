@@ -8,7 +8,7 @@ import discord4j.core.object.util.Permission;
 import discord4j.core.object.util.PermissionSet;
 import us.myles_selim.cp_ladder.CPLadder;
 import us.myles_selim.cp_ladder.EmbedBuilder;
-import us.myles_selim.cp_ladder.StarotaConstants;
+import us.myles_selim.cp_ladder.LadderConstants;
 import us.myles_selim.cp_ladder.commands.registry.java.JavaCommand;
 
 public class CommandCredits extends JavaCommand {
@@ -25,7 +25,7 @@ public class CommandCredits extends JavaCommand {
 	@Override
 	public void execute(String[] args, Message message, Guild guild, Channel channel) {
 		EmbedBuilder builder = new EmbedBuilder();
-		builder.withTitle("Credits for " + CPLadder.BOT_NAME + " v" + StarotaConstants.VERSION);
+		builder.withTitle("Credits for " + CPLadder.BOT_NAME + " v" + LadderConstants.VERSION);
 
 		builder.appendDesc("**General Development**: Selim_042: [GitHub](http://github.com/Selim042) | "
 				+ "[Twitter](http://twitter.com/Selim_042)\n");

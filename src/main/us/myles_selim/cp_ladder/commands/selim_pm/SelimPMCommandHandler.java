@@ -10,7 +10,7 @@ import discord4j.core.object.entity.PrivateChannel;
 import discord4j.core.object.entity.Role;
 import discord4j.core.object.util.Permission;
 import us.myles_selim.cp_ladder.CPLadder;
-import us.myles_selim.cp_ladder.StarotaConstants;
+import us.myles_selim.cp_ladder.LadderConstants;
 import us.myles_selim.cp_ladder.commands.CommandPing;
 import us.myles_selim.cp_ladder.commands.registry.CommandHelp;
 import us.myles_selim.cp_ladder.commands.registry.ICommand;
@@ -59,7 +59,7 @@ public class SelimPMCommandHandler {
 
 	public static boolean isSelimPM(Channel channel) {
 		if (channel instanceof PrivateChannel
-				&& ((PrivateChannel) channel).getRecipientIds().contains(StarotaConstants.SELIM_USER_ID))
+				&& ((PrivateChannel) channel).getRecipientIds().contains(LadderConstants.SELIM_USER_ID))
 			return true;
 		return false;
 	}

@@ -12,7 +12,7 @@ import org.squiddev.cobalt.function.TwoArgFunction;
 import org.squiddev.cobalt.lib.LuaLibrary;
 
 import discord4j.core.object.entity.Guild;
-import us.myles_selim.cp_ladder.StarotaConstants;
+import us.myles_selim.cp_ladder.LadderConstants;
 import us.myles_selim.cp_ladder.enums.EnumPokemon;
 import us.myles_selim.cp_ladder.lua.LuaUtils;
 import us.myles_selim.cp_ladder.lua.conversion.ConversionHandler;
@@ -28,7 +28,7 @@ public class StarotaLib implements LuaLibrary {
 
 	@Override
 	public LuaValue add(LuaState state, LuaTable env) {
-		env.rawset("_STAROTA_VERSION", ValueFactory.valueOf(StarotaConstants.VERSION));
+		env.rawset("_STAROTA_VERSION", ValueFactory.valueOf(LadderConstants.VERSION));
 		env.rawset("getPokemon", new OneArgFunction() {
 
 			@Override

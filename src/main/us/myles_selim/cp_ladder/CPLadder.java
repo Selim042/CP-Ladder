@@ -34,7 +34,6 @@ import us.myles_selim.cp_ladder.lua.commands.LuaCommandHandler;
 public class CPLadder {
 
 	private static DiscordClient CLIENT;
-	// private static Socket MANAGER_SOCKET;
 	private static final Properties PROPERTIES = new Properties();
 
 	public final static boolean DEBUG = false;
@@ -77,12 +76,6 @@ public class CPLadder {
 			dispatcher.on(MessageCreateEvent.class).subscribe((event) -> {
 				System.out.println(event.getMessage());
 			});
-			// try {
-			// while (!CLIENT.isConnected())
-			// Thread.sleep(10);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
 
 			COMMAND_HANDLER = new PrimaryCommandHandler(CLIENT);
 			// REACTION_MESSAGES_REGISTRY = new ReactionMessageRegistry(CLIENT);
@@ -94,52 +87,20 @@ public class CPLadder {
 			registerCommands(jCmdHandler);
 
 			SelimPMCommandHandler.init();
-
-			// try {
-			// Thread.sleep(2500);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
 			System.out.println("starting threads and loading settings...");
 
 			COMMAND_HANDLER.setup(dispatcher);
-			// dispatcher.registerListener(REACTION_MESSAGES_REGISTRY);
-			// ReactionMessageRegistry.init();
 
-			// try {
-			// Thread.sleep(2500);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
-			System.out.println("v" + StarotaConstants.VERSION + (DEBUG || IS_DEV ? "d" : ""));
+			System.out.println("v" + LadderConstants.VERSION + (DEBUG || IS_DEV ? "d" : ""));
 			StatusUpdater statusUpdater = new StatusUpdater(CLIENT);
 			statusUpdater.addPresence(Presence.online(
-					Activity.playing("v" + StarotaConstants.VERSION + (DEBUG || IS_DEV ? "d" : ""))));
+					Activity.playing("v" + LadderConstants.VERSION + (DEBUG || IS_DEV ? "d" : ""))));
 			statusUpdater.start();
 
 			new LuaEventHandler().setup(dispatcher);
 			new LuaCommandHandler(CLIENT).setup(dispatcher);
 
 			FULLY_STARTED = true;
-
-			Thread discord4JWatchdog = new Thread("D4JWatchdog") {
-
-				private boolean isReady = CLIENT.isConnected();
-
-				@Override
-				public void run() {
-					while (true) {
-						boolean inReady = CLIENT.isConnected();
-						if (!isReady && !inReady)
-							System.exit(1);
-						isReady = inReady;
-						try {
-							Thread.sleep(60000); // 1 min
-						} catch (InterruptedException e) {}
-					}
-				}
-			};
-			discord4JWatchdog.start();
 
 			loginMono.block();
 		} catch (Exception e) {
@@ -288,10 +249,6 @@ public class CPLadder {
 					return ch;
 		}
 		return null;
-	}
-
-	public static Guild getSupportServer() {
-		return getGuild(StarotaConstants.SUPPORT_SERVER.asLong());
 	}
 
 	public static void submitError(Throwable e) {

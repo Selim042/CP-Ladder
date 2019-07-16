@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import us.myles_selim.cp_ladder.StarotaConstants;
+import us.myles_selim.cp_ladder.LadderConstants;
 import us.myles_selim.cp_ladder.cache.CachedData;
 import us.myles_selim.cp_ladder.cache.ClearCache;
 
@@ -1165,7 +1165,7 @@ public enum EnumPokemon {
 			try {
 				URL url = new URL(SILPH_DEX);
 				URLConnection conn = url.openConnection();
-				conn.setRequestProperty("User-Agent", StarotaConstants.HTTP_USER_AGENT);
+				conn.setRequestProperty("User-Agent", LadderConstants.HTTP_USER_AGENT);
 				BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 				String html = "";
 				String line = null;
