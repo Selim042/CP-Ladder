@@ -1,0 +1,14 @@
+.classpath
+.project
+.settings
+
+bin/*
+libs/*
+target/*
+
+cp_ladder.properties
+
+configs/*
+*.traineddata
+
+/target/
